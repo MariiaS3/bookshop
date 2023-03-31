@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="./rejestracja.css" />
+    <script src="jquery-3.6.3.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <form id="userForm" action="/form/submit" method="post">
+        <div class="form-row">
+            <label for="name">Imię*</label>
+            <input type="text" name="name" id="name" pattern="[A-WZŁ][a-złóżćąńź]{3,}" placeholder="Wpisz imię (min. 3 znaki)"
+                required>
+        </div>
+        <div class="form-row">
+            <label for="lastname">Nazwisko*</label>
+            <input type="text" name="lastname" id="lastname" pattern="[A-WZŁ][a-złóżćąńź]{3,}"
+                placeholder="Wpisz nazwizko (min. 3 znaki)" required>
+        </div>
+        <div class="form-row" id="form-email">
+            <label for="email">Email*</label>
+            <input type="text" name="email" id="email" placeholder="Wpisz email" required>
+        </div>
+        <div class="form-row">
+            <label for="haslo1">Hasło*</label>
+            <input type="password" name="haslo1" id="haslo1" pattern=".{8,32}" placeholder="Wpisz hasło" required>
+        </div>
+        <div class="form-row">
+            <label for="haslo2">Powtórz hasło*</label>
+            <input type="password" name="haslo2" id="haslo2" pattern=".{8,32}" placeholder="Powtórz hasło" required>
+        </div>
+        <!-- <div class="form-message">
+            
+        </div> -->
+        <input type="submit" value="REGISTER">
+    </form>
+    <div id="response"></div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js "></script>
+    <script type="text/javascript" src="./rejestracja.js"></script>
+
+</body>
+
+</html>

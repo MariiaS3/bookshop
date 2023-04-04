@@ -2,9 +2,9 @@ $(document).ready(function() {
 
     function markFieldAsError(field, hasError) {
         if (hasError) {
-            field.addClass('field-error');
+            field.addClass('field-error').css({ "border-color":"tomato"});
         } else {
-            field.removeClass('field-error');
+            field.removeClass('field-error').css({ "border-color":"green"});
             removeFieldError(field);
         }
     }
@@ -12,10 +12,8 @@ $(document).ready(function() {
     function removeFieldError(field) {
         const errorText = field.next();
         if (errorText !== null) {
-            console.log(errorText.hasClass('form-error-text'));
-            if (errorText.hasClass('form-error-text')) {
-                // errorText.remove();
-                $('.form-error-text').remove();
+            if (errorText.hasClass('error-text')) {
+                errorText.remove();
             }
         }
     };
@@ -24,22 +22,18 @@ $(document).ready(function() {
         removeFieldError(field);
     
         var div = $('<div>'+text+'</div>');
-        div.addClass('.form-error-text');
-
+        div.addClass('error-text');
         if (field.next() === null) {
             field.parent().append(div);
         } else {
-            if (!field.next().hasClass('.form-error-text')) {
+            if (!field.next().hasClass('error-text')) {
                 field.parent().append(div);
             }
         }
         };
     
-        function testText(field, n) {
-            return field.val().length >= n;
-        };
-    
         function testFormat(field, format) {
+            console.log(field.val().match(format));
           return field.val().match(format);
         };
     
@@ -69,6 +63,7 @@ $(document).ready(function() {
     
         if (!testFormat($inputPassword1, $passwordformat)) {
             markFieldAsError($inputPassword2, true);
+            markFieldAsError($inputPassword1, true);
             createFieldError($inputPassword2, "Hasło powinno mieć minimum osiem znaków, co najmniej jedna wielka litera, jedna mała litera, jedna cyfra i jeden znak specjalny");
             formsErrors = true;
         }
@@ -81,23 +76,19 @@ $(document).ready(function() {
         }
     
         if (!formsErrors) {
-          // $.ajax({
-          //   type: "POST",
-          //   url: 'rejestracja.php',
-          //   data :$form.serialize()
-          // }).done(function(data) {
-          //   alert("Posting post.");
-          //   $('#response').html(data.val()());
-          //   console.log("Posting failed.");
-    
-          // })
-          // .fail(function() {
-          //   alert("Posting hello.");
-          //   $('#response').html("hello");
-          //   console.log("Posting failed.");
-    
-          // });
-          return false;
+        //   $.ajax({
+        //     type: "POST",
+        //     url: 'rejestracja.php',
+        //     data :$form.serialize(),
+        //     success: function(data){
+        //         alert('horray! 200 status code!');
+        //     },
+        //     error: function(jqXHR) {
+        //         if (jqXHR.status == 422) {
+        //             $('#response').html("Konto o takim adresie już istnieje");
+        //         }
+        //     },
+        //   })
         }
         });
       });

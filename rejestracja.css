@@ -25,14 +25,17 @@ input:not(:placeholder-shown):invalid {
     outline: none;
     box-shadow: 0 0 2px tomato;
 }
+
 input:not(:placeholder-shown):invalid ~ .form-error-text {
     display: block;
 }
+
 input:not(:placeholder-shown):required:valid {
-    border-color: #4dcc23;
+    border-color: green;
     outline: none;
-    box-shadow: 0 0 2px #4dcc23;
+    box-shadow: 0 0 2px green;
 }
+
 input:not(:placeholder-shown):required:valid ~ .form-error-text {
     display: none;
 }

@@ -12,19 +12,22 @@ textarea:not(:placeholder-shown):required:valid {
     outline: none;
     box-shadow: 0 0 2px #4dcc23;
 } */
+body{
+    margin: auto;
+}
 
-input {}
 .form-error-text {
     display: none;
 }
+
 input:not(:placeholder-shown):invalid {
     border-color: tomato;
     outline: none;
     box-shadow: 0 0 2px tomato;
 }
-/* input:not(:placeholder-shown):invalid ~ .form-error-text {
+input:not(:placeholder-shown):invalid ~ .form-error-text {
     display: block;
-} */
+}
 input:not(:placeholder-shown):required:valid {
     border-color: #4dcc23;
     outline: none;
@@ -33,3 +36,5 @@ input:not(:placeholder-shown):required:valid {
 input:not(:placeholder-shown):required:valid ~ .form-error-text {
     display: none;
 }
+
+.form-row {   margin: 10px;}

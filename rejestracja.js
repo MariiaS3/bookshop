@@ -64,31 +64,34 @@ $(document).ready(function() {
         if (!testFormat($inputPassword1, $passwordformat)) {
             markFieldAsError($inputPassword2, true);
             markFieldAsError($inputPassword1, true);
-            createFieldError($inputPassword2, "Hasło powinno mieć minimum osiem znaków, co najmniej jedna wielka litera, jedna mała litera, jedna cyfra i jeden znak specjalny");
+            createFieldError($inputPassword2, "");
+            $('#response').html("Hasło powinno mieć minimum osiem znaków, co najmniej jedna wielka litera, jedna mała litera, jedna cyfra i jeden znak specjalny");
             formsErrors = true;
-        }
-    
-        if ($inputPassword1.value !== $inputPassword2.value) {
+        } else if ($inputPassword1.val() !== $inputPassword2.val()) {
             markFieldAsError($inputPassword1, true);
             markFieldAsError($inputPassword2, true);
-            createFieldError($inputPassword2, "Hasła są różne!!!");
+            createFieldError($inputPassword2, "");
+            $('#response').html("Hasła są różne!!!");
             formsErrors = true;
         }
     
         if (!formsErrors) {
-        //   $.ajax({
-        //     type: "POST",
-        //     url: 'rejestracja.php',
-        //     data :$form.serialize(),
-        //     success: function(data){
-        //         alert('horray! 200 status code!');
-        //     },
-        //     error: function(jqXHR) {
-        //         if (jqXHR.status == 422) {
-        //             $('#response').html("Konto o takim adresie już istnieje");
-        //         }
-        //     },
-        //   })
+          $.ajax({
+            type: "POST",
+            url: 'rejestracja.php',
+            data :$form.serialize(),
+            success: function(data){
+                // alert('horray! 200 status code!');
+                $('#response').html("Konto zostało pomyślnie utworzone proszę przejdź do logowania");
+            },
+            error: function(jqXHR) {
+                if (jqXHR.status == 422) {
+                    $('#response').html("Konto o takim adresie już istnieje");
+                } else{
+                    $('#response').html("Przepraszamy wystąpił nieoczekiwany błąd, spróbój później");
+                }
+            },
+          })
         }
         });
       });

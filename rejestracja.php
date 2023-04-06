@@ -12,48 +12,51 @@
 </head>
 
 <body>
-
     <main>
-        <?php
-        include_once("./rejestracja.html");
+        <div class="container">
+            <div class="panels">
+                <div class="panel">
+                    <h2>REJESTRACJA</h2>
+                    <?php
+                    include_once("./rejestracja.html");
 
-        $email_exist = false;
-        $zapisz = true;
+                    $email_exist = false;
+                    $zapisz = true;
 
-        if (isset($_POST['name'])) {
-            try {
-                $adres = "localhost";
-                $user = "root";
-                $password = "";
-                $dbname = "bookshop";
+                    if (isset($_POST['name'])) {
+                        try {
+                            $adres = "localhost";
+                            $user = "root";
+                            $password = "";
+                            $dbname = "bookshop";
 
-                $id = new mysqli($adres, $user, $password, $dbname);
+                            $id = new mysqli($adres, $user, $password, $dbname);
 
-                $name = $_POST['name'];
-                $lastname = $_POST['lastname'];
-                $email = $_POST['email'];
-                $password1 = $_POST['haslo1'];
-                // $password2 = $_POST['haslo2'];
+                            $name = $_POST['name'];
+                            $lastname = $_POST['lastname'];
+                            $email = $_POST['email'];
+                            $password1 = $_POST['haslo1'];
 
-                $password_hash = hash('sha256', $password1);
-                $query_find_if_exist = "SELECT login FROM users WHERE login='$email'";
-                $find_user =  $id->query($query_find_if_exist);
+                            $password_hash = hash('sha256', $password1);
+                            $query_find_if_exist = "SELECT login FROM users WHERE login='$email'";
+                            $find_user =  $id->query($query_find_if_exist);
 
-                if ($find_user->num_rows == 0) {
-                    $query = "INSERT INTO users (name, last_name, login, password) VALUES ('$name','$lastname', '$email', '$password_hash')";
-                    $id->query($query);
-                } else {
-                    $email_exist = true;
-                    header("Location:rejestracja.html", TRUE, 422);
-                }
-            } catch (Exception $ex) {
-            }
-        }
-        ?>
-
+                            if ($find_user->num_rows == 0) {
+                                $query = "INSERT INTO users (name, last_name, login, password) VALUES ('$name','$lastname', '$email', '$password_hash')";
+                                $id->query($query);
+                                header("Location:logowanie.html");
+                            } else {
+                                $email_exist = true;
+                                header("Location:rejestracja.html", TRUE, 422);
+                            }
+                        } catch (Exception $ex) {
+                        }
+                    }
+                    ?>
+                </div>
+            </div>
+        </div>
     </main>
-
-
 </body>
 
 </html>

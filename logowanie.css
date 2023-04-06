@@ -24,8 +24,8 @@ label {
     background: #fffffff6;
     box-shadow: 0 2rem 2rem #00000080;
     width: 100%;
-    max-width: 700px;
-    height: 500px;
+    max-width: 500px;
+    height: 400px;
     border-radius: 3px;
     overflow: hidden;
 }
@@ -42,7 +42,7 @@ label {
 
 .field {
     height: 20px;
-    width: 400px;
+    width: 300px;
 }
 
 .btn {

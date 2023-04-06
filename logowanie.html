@@ -1,0 +1,15 @@
+<form id="userForm" method="post">
+    <div class="form-row" id="form-email">
+        <label for="email">Email</label><br>
+        <input class="field" type="text" name="email" id="email" placeholder="Wpisz email" required>
+    </div>
+    <div class="form-row">
+        <label for="haslo">Hasło</label><br>
+        <input class="field" type="password" name="haslo" id="haslo" pattern=".{8,32}" placeholder="Wpisz hasło"
+            required>
+    </div>
+    <input class="btn" type="submit" value="ZALOGUJ SIĘ"> <br>
+    <div class="form-response"  id="response"></div>
+    <a  href='./rejestracja.php'>Rejestracja</a>
+</form>
+<script type="text/javascript" src="./logowanie.js"></script>

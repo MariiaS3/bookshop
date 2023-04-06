@@ -20,8 +20,9 @@ $(document).ready(function () {
 
     function createFieldError(field, text) {
         removeFieldError(field);
+
         var div = $('<div>' + text + '</div>');
-        div.addClass('form-error-text').css({ "margin-top": "5px", "text-align": "start", "color": "red", "font-size" : "small"});
+        div.addClass('form-error-text');
         if (field.next() === null) {
             field.parent().append(div);
         } else {
@@ -41,15 +42,14 @@ $(document).ready(function () {
 
         const $form = $(this);
         const $inputEmail = $form.find("input[name='email']");
-        const $inputPassword1 = $form.find("input[name='haslo1']");
-        const $inputPassword2 = $form.find("input[name='haslo2']");
+        const $inputPassword = $form.find("input[name='haslo']");
 
         const $mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
         const $passwordformat = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
         var formsErrors = false;
 
-        for (const el of [$inputEmail, $inputPassword1, $inputPassword2]) {
+        for (const el of [$inputEmail, $inputPassword]) {
             markFieldAsError(el, false);
             removeFieldError(el);
         }
@@ -60,34 +60,23 @@ $(document).ready(function () {
             formsErrors = true;
         }
 
-        if (!testFormat($inputPassword1, $passwordformat)) {
-            markFieldAsError($inputPassword2, true);
-            markFieldAsError($inputPassword1, true);
-            createFieldError($inputPassword2, "");
+        if (!testFormat($inputPassword, $passwordformat)) {
+            markFieldAsError($inputPassword, true);
+            createFieldError($inputPassword, "");
             $('#response').html("Hasło powinno mieć minimum osiem znaków, co najmniej jedna wielka litera, jedna mała litera, jedna cyfra i jeden znak specjalny");
-            formsErrors = true;
-        } else if ($inputPassword1.val() !== $inputPassword2.val()) {
-            markFieldAsError($inputPassword1, true);
-            markFieldAsError($inputPassword2, true);
-            createFieldError($inputPassword2, "");
-            $('#response').html("Hasła są różne!!!");
             formsErrors = true;
         }
 
         if (!formsErrors) {
             $.ajax({
                 type: "POST",
-                url: 'rejestracja.php',
+                url: 'logowanie.php',
                 data: $form.serialize(),
                 success: function (data) {
-                    $('#response').html("Konto zostało pomyślnie utworzone proszę przejdź do logowania");
+                    $('#response').html("Logowanie przebiegło pomyślnie");
                 },
-                error: function (jqXHR) {
-                    if (jqXHR.status == 422) {
-                        $('#response').html("Konto o takim adresie email już istnieje");
-                    } else {
-                        $('#response').html("Przepraszamy wystąpił nieoczekiwany błąd, spróbój ponownie później");
-                    }
+                error: function () {
+                    $('#response').html("Przepraszamy wystąpił nieoczekiwany błąd, spróbój ponownie później");
                 },
             })
         }

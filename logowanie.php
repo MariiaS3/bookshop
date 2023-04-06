@@ -6,69 +6,60 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="jquery-3.6.3.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="./logowanie.css">
 </head>
 
 <body>
-    <?php
-    $email = "";
-    $password = "";
+    <main>
+        <div class="container">
+            <div class="panels">
+                <div class="panel">
+                    <h2>LOGOWANIE</h2>
+                    <?php
+                    use \Firebase\JWT\JWT;
 
-    $wrong_email = false;
-    $wrong_password = false;
-    $email_exist = false;
+                    include_once("./logowanie.html");
 
-    if (isset($_POST['email'])) {
-        try {
-            $adres = "localhost";
-            $user = "root";
-            $password = "";
-            $dbname = "bookshop";
+                    $email_exist = false;
+                    $zapisz = true;
 
-            $id = new mysqli($adres, $user, $password, $dbname);
+                    if (isset($_POST['email'])) {
+                        try {
+                            $adres = "localhost";
+                            $user = "root";
+                            $password = "";
+                            $dbname = "bookshop";
 
-            $email = $_POST['email'];
-            $password = $_POST['haslo'];
+                            $id = new mysqli($adres, $user, $password, $dbname);
 
-            $query_find_if_exist = "SELECT login, password FROM users WHERE login='$email'";
-            $find_user =  $id->query($query_find_if_exist);
-            echo "zalogowano1";
+                            $email = $_POST['email'];
+                            $password = $_POST['haslo'];
 
+                            $password_hash = hash('sha256', $password);
+                            $query_find_if_exist = "SELECT login, password FROM users WHERE login='$email'";
+                            $find_user =  $id->query($query_find_if_exist);
 
-            if ($find_user->num_rows == 0) {
-                $email_exist = true;
-            } else {
-                $password_hash = hash('sha256', $password);
-                $rekord = $find_user->fetch_array();
-                if ($rekord['password'] == $password_hash) {
-                    echo "zalogowano";
-                } else {
-                    $wrong_password = true;
-                }
-            }
-        } catch (Exception $ex) {
-        }
-    }
-    ?>
-
-    <form action="./logowanie.php" method="post">
-        <label for="email">Email</label>
-        <input type="text" name="email" id="email" value="<?php echo $email; ?>" required><br>
-        <?php
-        if ($email_exist) {
-            echo "<p>Użytkownik o takim email nie istnieje</p>";
-        }
-        ?>
-        <label for="haslo">Hasło</label>
-        <input type="password" name="haslo" id="haslo" value="<?php echo $password; ?>" required><br>
-        <?php
-        if ($wrong_password) {
-            echo "<p>Błędne hasło</p>";
-        }
-        ?>
-        <input type="submit" value="ZALOGUJ SIĘ">
-    </form>
-
-
+                            if ($find_user->num_rows != 0) {
+                                $password_hash = hash('sha256', $password);
+                                $rekord = $find_user->fetch_array();
+                                if ($rekord['password'] == $password_hash) {
+                                    echo "zalogowano";
+                                    session_start();
+                                    // $_SESSION['użutkownik']=token;
+                                } else {
+                                    header("Location:rejestracja.html", TRUE, 401);
+                                }
+                            }
+                        } catch (Exception $ex) {
+                        }
+                    }
+                    ?>
+                </div>
+            </div>
+        </div>
+    </main>
 </body>
 
 </html>

@@ -18,8 +18,6 @@
                 <div class="panel">
                     <h2>LOGOWANIE</h2>
                     <?php
-                    use \Firebase\JWT\JWT;
-
                     include_once("./logowanie.html");
 
                     $email_exist = false;

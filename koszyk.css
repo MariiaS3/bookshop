@@ -1,0 +1,78 @@
+body {
+    margin: auto;
+    font-family: 'Arimo', sans-serif;
+    font-size: medium;
+}
+
+.container {
+    max-width: 1920px;
+    height: 950px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.items {
+    width: 60%;
+    padding: 50px;
+}
+
+.item {
+    display: flex;
+    list-style: none;
+    margin: 50px 0px 50px 0px;
+    height: 200px;
+    width: 100%;
+    background: #fffffff6;
+    box-shadow: 0 0 1rem #00000080;
+    border-radius: 15px;
+}
+
+.opis{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 30px;
+}
+
+img{
+    width: 120px;
+    height: 120px;
+}
+
+.tytul, .dane{
+    padding: 0px 0px 0px 20px;
+}
+
+.tytul{
+    margin-top: -5px;
+    width: 700px;
+}
+
+.dane{
+    font-size: small;
+}
+
+.cena{
+    text-align: center;
+    right: 450px;  
+}
+
+h3{
+    color: rgb(234, 174, 33);
+}
+
+.num{
+    width: 50px;
+    height: 15px;
+}
+
+.stan{
+    font-size: small;
+}
+
+.dodaj-do-kosz{
+    margin: 10px 0px 20px 10px;
+    width: 150px;
+    height: 30px;
+}

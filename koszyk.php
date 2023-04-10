@@ -36,47 +36,49 @@
                     array_push($isbn, $koszyk[$i]);
                     array_push($n, $koszyk[$j]);
                 }
-                $count = count($isbn);
-                $placeholders = implode(',', array_fill(0, $count, '?'));
-
-                echo "<a href=\"kasuj.php\">Kasuj koszyk</a>";
-
+                
+                
                 $id = new mysqli($address, $user, $password, $dbname);
-
-                $query = "SELECT * FROM books WHERE isbn IN ($placeholders)";
+                $query = "SELECT * FROM books WHERE isbn IN ('" . implode("','", $isbn) . "')";
                 $dane = $id->query($query);
-        ?>
+                
+                ?>
                 <div class="container">
                     <div class="items">
-                        <ul>
-                            <?php
+                            <table>
+                                <tr>
+                                    <th>Tytul</th>
+                                    <th>Autor</th>
+                                    <th>ISBN</th>
+                                    <th>Cena</th>
+                                    <th>Ilosc</th>
+                                    <th>Wartosc</th>
+                                </tr>
+                                <?php
                             $j = 0;
-                            while ($rekord = $dane->fetch_assoc()) {
-                            ?>
-                                <li class="item">
-                                    <div class="opis">
-                                        <div class="tytul">
-                                            <?php
-                                            echo '<h2 class="tytul">' . $rekord['tytul'] . '</h2>';
-                                            echo '<p class="dane">Autor: ' . $rekord['autor'] . '</p>';
-                                            echo '<p class="dane">ISBN: ' . $rekord['isbn'] . '</p>';
-                                            echo '<p class="dane">Cena : ' . $rekord['cena'] . '</p>';
-                                            echo '<p class="dane">Ilość : ' . $n[$j] . '</p>';
-                                            echo '<p class="dane">Wartość : ' . $rekord['cena'] * $n[$j] . '</p>';
-                                            ?>
-                                        </div>
-                                    </div>
-                                </li>
-                            <?php
+                            $sum = 0;
+                            while ($rekord = $dane->fetch_array()) {
+                                echo '<tr><td><h4 class="tytul">' . $rekord['tytul'] . '</h4></td>';
+                                echo '<td><p class="dane">' . $rekord['autor'] . '</p></td>';
+                                echo '<td><p class="dane">' . $rekord['isbn'] . '</p></td>';
+                                echo '<td><p class="dane">' . $rekord['cena'] . '</p></td>';
+                                echo '<td><p class="dane">' . $n[$j] . '</p></td>';
+                                echo '<td><p class="dane">' . $rekord['cena'] * $n[$j] . '</p></td></tr>';
+                                
+                                $sum += $rekord['cena'] * $n[$j];
                                 $j++;
                             }
                             ?>
-                        </ul>
-                    </div>
-                </div>
-        <?php
+                                </table>
+                                <?php
+                                    echo "<p>Wartosc w koszyku wynosi: $sum</p>";
+                                    echo "<a href=\"kasuj.php\">Usun towary z koszyka</a>";
+                                ?>
+                            </div>
+                        </div>
+                        <?php
 
-            } catch (Exception $th) {
+} catch (Exception $th) {
                 $komunikat = $th->getMessage();
                 echo $komunikat;
                 echo "<p>Błąd przepraszamy</p>";

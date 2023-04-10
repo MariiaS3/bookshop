@@ -1,0 +1,33 @@
+body {
+    margin: auto;
+    font-family: 'Arimo', sans-serif;
+    font-size: medium;
+}
+
+
+.navbar{
+    width: 100%;
+    display: flex;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0rem 0rem 2rem #000000;
+    align-items: center;
+    position: sticky;
+    top: 0;
+}
+
+.navbar-nav{
+    display: flex;
+    list-style: none;
+    justify-content:space-around;
+    width: 100%;
+}
+
+.nav-item{
+    cursor: pointer;
+    margin: 15px 0px 0px 0px;
+}
+
+.nav-link{
+    text-decoration: none;
+}
+

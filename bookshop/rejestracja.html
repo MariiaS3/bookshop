@@ -1,0 +1,30 @@
+<form id="userForm" method="post">
+    <div class="form-row">
+        <label for="name" style="padding-right: 35px;">Imię*</label> <br>
+        <input class="field" type="text" name="name" id="name" pattern="[A-WZŁ][a-złóżćąńź]{3,}"
+            placeholder="Wpisz imię (min. 3 znaki)" required>
+    </div>
+    <div class="form-row">
+        <label for="lastname">Nazwisko*</label><br>
+        <input class="field" type="text" name="lastname" id="lastname" pattern="[A-WZŁ][a-złóżćąńź]{3,}"
+            placeholder="Wpisz nazwizko (min. 3 znaki)" required>
+    </div>
+    <div class="form-row" id="form-email">
+        <label for="email">Email*</label><br>
+        <input class="field" type="text" name="email" id="email" placeholder="Wpisz email" required>
+    </div>
+    <div class="form-row">
+        <label for="haslo1">Hasło*</label><br>
+        <input class="field" type="password" name="haslo1" id="haslo1" pattern=".{8,32}" placeholder="Wpisz hasło"
+            required>
+    </div>
+    <div class="form-row">
+        <label for="haslo2">Powtórz hasło*</label><br>
+        <input class="field" type="password" name="haslo2" id="haslo2" pattern=".{8,32}" placeholder="Powtórz hasło"
+            required>
+    </div>
+    <input class="btn" type="submit" value="ZAREJESTRUJ SIĘ">
+    <div class="form-response" id="response"></div>
+    <a  href='./logowanie.php'>Logowanie</a>
+</form>
+<script type="text/javascript" src="./rejestracja.js"></script>

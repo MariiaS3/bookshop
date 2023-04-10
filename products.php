@@ -34,7 +34,8 @@
                 if (!isset($_SESSION['koszyk'])) {
                     $_SESSION['koszyk'] = [];
                 }
-                array_push($_SESSION['koszyk'], $_GET['id_book'], $_GET['num']);
+
+                $_SESSION['koszyk'][$_GET['id_book']] = $_GET['num'];
             }
         ?>
             <div class="container">

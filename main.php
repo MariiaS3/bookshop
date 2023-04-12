@@ -10,13 +10,9 @@
 </head>
 
 <body>
-    <main>
     <?php
-    include_once("./pasek.html")
-    ?>
-
-    </main>
-    
+    include_once("./pasek.php")
+    ?>  
 </body>
 
 </html>

@@ -60,7 +60,9 @@
                                     $token = $base64UrlHeader . "." . $base64UrlPayload . "." . $base64UrlSignature;
                                     
                                     session_start();
-                                    $_SESSION['użutkownik']='Bearer '+$token;
+                                    $_SESSION['token']='Bearer '+$token;
+                                    $_SESSION['username']=$email;
+                                    header("Location:main.php", $token);
 
                                 } else {
                                     header("Location:rejestracja.html", TRUE, 401);

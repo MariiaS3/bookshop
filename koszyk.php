@@ -6,6 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="jquery-3.6.3.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
     <link rel="stylesheet" href="./main.css">
     <link rel="stylesheet" href="./koszyk.css">
 </head>
@@ -13,7 +17,7 @@
 <body>
     <main>
         <?php
-        include_once("./pasek.html")
+        include_once("./pasek.php")
         ?>
         <?php
         $address = "localhost";
@@ -23,7 +27,7 @@
 
         session_start();
         if (!isset($_SESSION['koszyk'])) {
-            echo "<p>Koszyk jest pusty</p>";
+            echo '<p class="kosz">Koszyk jest pusty</p>';
         } else {
             try {
 
@@ -66,12 +70,16 @@
                             }
                             ?>
                         </table>
-                        <?php
-                        echo "<p>Wartosc w koszyku wynosi: $sum</p>";
-                        echo "<a href=\"kasuj.php\">Usun towary z koszyka</a>";
-                        ?>
+                        <div class="suma">
+                            <?php
+                            echo "<p>Wartosc w koszyku wynosi: $sum</p>";
+                            echo '<input type="submit" id="zamow" value="Złóż zamówienie"><br><br>';
+                            echo "<a href=\"kasuj.php\">Usun towary z koszyka</a>";
+                            ?>
+                        </div>
                     </div>
                 </div>
+
         <?php
 
             } catch (Exception $th) {
@@ -82,7 +90,29 @@
         }
         ?>
 
+        <script>
+            $(document).ready(function() {
+                $('#zamow').click(function() {
+                    $.confirm({
+                        title: 'Zamówienie',
+                        content: '<br> Do złożenia zamowienia jest wymagane posiadanie konta. <br> Proszę zarejestruj się jeśli jeszcze nie masz konta w przeciwnym przypadku zaloguj się',
+                        buttons: {
+                            'zaloguj się': function() {
+                                location.href = 'logowanie.php';
+                            },
+                            'zarejestruj się': function() {
+                                location.href ='rejestracja.php';
+                            },
+                            anuluj: function() {
+
+                            },
+                        }
+                    });
+                });
+            });
+        </script>
     </main>
+
 </body>
 
 </html>

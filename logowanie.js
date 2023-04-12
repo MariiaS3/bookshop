@@ -33,7 +33,6 @@ $(document).ready(function () {
     };
 
     function testFormat(field, format) {
-        console.log(field.val().match(format));
         return field.val().match(format);
     };
 
@@ -73,6 +72,7 @@ $(document).ready(function () {
                 url: 'logowanie.php',
                 data: $form.serialize(),
                 success: function (data) {
+                    console.log(data);
                     $('#response').html("Logowanie przebiegło pomyślnie");
                 },
                 error: function () {

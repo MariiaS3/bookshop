@@ -1,10 +1,5 @@
-body {
-    margin: auto;
-    font-family: 'Arimo', sans-serif;
-    font-size: medium;
-}
-
 .container {
+    display: flex;
     max-width: 1920px;
     height: 950px;
     display: flex;
@@ -15,16 +10,18 @@ body {
 .items {
     width: 70%;
     padding: 50px;
+    margin: 0px 0px 0px 300px;
 }
 
 .item {
     display: flex;
+    justify-content: center;
     list-style: none;
     margin: 50px 0px 50px 0px;
     height: 200px;
-    width: 100%;
+    width: 90%;
     background: #fffffff6;
-    box-shadow: 0 0 1rem #00000080;
+    box-shadow: 0 0 0.5rem #00000080;
     border-radius: 15px;
 }
 
@@ -32,7 +29,6 @@ body {
     display: flex;
     flex-direction: row;
     align-items: center;
-    margin: 30px;
 }
 
 img{
@@ -55,7 +51,8 @@ img{
 
 .cena{
     text-align: center;
-    right: 450px;  
+    margin-bottom: 20px;
+
 }
 
 h3{

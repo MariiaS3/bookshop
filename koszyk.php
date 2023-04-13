@@ -110,6 +110,13 @@
                         });
                     });
                 <?php
+                } else if(isset($_SESSION['koszyk'])){
+                    ?>
+                    $('#zamow').click(function() {
+                        location.href = './kasuj.php';
+                    });
+                <?php
+
                 }
                 ?>
             });

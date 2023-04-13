@@ -22,7 +22,7 @@ $(document).ready(function () {
         removeFieldError(field);
 
         var div = $('<div>' + text + '</div>');
-        div.addClass('form-error-text');
+        div.addClass('form-error-text').css({ "margin-top": "5px", "text-align": "start", "color": "red", "font-size" : "small"});
         if (field.next() === null) {
             field.parent().append(div);
         } else {
@@ -62,7 +62,7 @@ $(document).ready(function () {
         if (!testFormat($inputPassword, $passwordformat)) {
             markFieldAsError($inputPassword, true);
             createFieldError($inputPassword, "");
-            $('#response').html("Hasło powinno mieć minimum osiem znaków, co najmniej jedna wielka litera, jedna mała litera, jedna cyfra i jeden znak specjalny");
+            $('#response').html("Hasło powinno mieć minimum osiem znaków,<br> co najmniej jedna wielka litera,<br> jedna mała litera,<br> jedna cyfra i jeden znak specjalny");
             formsErrors = true;
         }
 

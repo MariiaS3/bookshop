@@ -14,6 +14,7 @@ $(document).ready(function () {
         if (errorText !== null) {
             if (errorText.hasClass('form-error-text')) {
                 errorText.remove();
+                $('#response').html("");
             }
         }
     };
@@ -64,7 +65,7 @@ $(document).ready(function () {
             markFieldAsError($inputPassword2, true);
             markFieldAsError($inputPassword1, true);
             createFieldError($inputPassword2, "");
-            $('#response').html("Hasło powinno mieć minimum osiem znaków, co najmniej jedna wielka litera, jedna mała litera, jedna cyfra i jeden znak specjalny");
+            $('#response').html("Hasło powinno mieć minimum osiem znaków,<br> co najmniej jedna wielka litera, jedna mała litera,<br> jedna cyfra i jeden znak specjalny");
             formsErrors = true;
         } else if ($inputPassword1.val() !== $inputPassword2.val()) {
             markFieldAsError($inputPassword1, true);

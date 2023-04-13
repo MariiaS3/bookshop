@@ -8,7 +8,7 @@
     <title>Document</title>
     <script src="jquery-3.6.3.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="./rejestracja.css">
+    <link rel="stylesheet" href="../css/rejestracja.css">
 </head>
 
 <body>
@@ -44,7 +44,7 @@
                             if ($find_user->num_rows == 0) {
                                 $query = "INSERT INTO users (name, last_name, login, password) VALUES ('$name','$lastname', '$email', '$password_hash')";
                                 $id->query($query);
-                                header("Location:logowanie.html");
+                                header("Location:../logowanie/logowanie.php");
                             } else {
                                 $email_exist = true;
                                 header("Location:rejestracja.html", TRUE, 422);

@@ -80,13 +80,16 @@ $(document).ready(function () {
                 url: 'rejestracja.php',
                 data: $form.serialize(),
                 success: function (data) {
-                    $('#response').html("Konto zostało pomyślnie utworzone proszę przejdź do logowania");
+                    $('#response').html("Konto zostało pomyślnie utworzone.");
+                    setTimeout(function() { 
+                        location.href ='../logowanie/logowanie.php';
+                    }, 800);
                 },
                 error: function (jqXHR) {
                     if (jqXHR.status == 422) {
                         $('#response').html("Konto o takim adresie email już istnieje");
                     } else {
-                        $('#response').html("Przepraszamy wystąpił nieoczekiwany błąd, spróbój ponownie później");
+                        $('#response').html("Przepraszamy wystąpił nieoczekiwany błąd,<br> spróbój ponownie później");
                     }
                 },
             })

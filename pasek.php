@@ -11,11 +11,12 @@
             </div>
             <div class="log">
                 <?php
+                    session_start();
                     if(!isset($_SESSION['username'])){
-                        echo '<a class="nav-link" href="./logowanie.php">Zaloguj się</a>';
-                        echo '<a class="nav-link" href="./rejestracja.php">Zarejestruj się</a>';
+                        echo '<a class="nav-link" href="./logowanie/logowanie.php">Zaloguj się</a>';
+                        echo '<a class="nav-link" href="./rejestracja/rejestracja.php">Zarejestruj się</a>';
                     }else{
-                       echo '<a class="nav-link" href="./logowanie.php">Wyloguj się</a>';
+                       echo '<a class="nav-link" href="./logowanie/wyloguj.php">Wyloguj się</a>';
                     }
                 ?>
             </div>

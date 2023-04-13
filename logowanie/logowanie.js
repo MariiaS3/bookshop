@@ -72,11 +72,19 @@ $(document).ready(function () {
                 url: 'logowanie.php',
                 data: $form.serialize(),
                 success: function (data) {
-                    console.log(data);
                     $('#response').html("Logowanie przebiegło pomyślnie");
+                    setTimeout(function() { 
+                        location.href ='../main.php';
+                    }, 800);
                 },
-                error: function () {
-                    $('#response').html("Przepraszamy wystąpił nieoczekiwany błąd, spróbój ponownie później");
+                error: function (jqXHR) {
+                    if (jqXHR.status == 422) {
+                        $('#response').html("Uzytkownik o takim email nie istnieje.");
+                    } else if(jqXHR.status == 409){
+                        $('#response').html("Podales bledne haslo");
+                    }else{
+                        $('#response').html("Przepraszamy wystąpił nieoczekiwany błąd,<br> spróbój ponownie później");
+                    }
                 },
             })
         }

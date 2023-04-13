@@ -10,8 +10,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
-    <link rel="stylesheet" href="./main.css">
-    <link rel="stylesheet" href="./koszyk.css">
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/koszyk.css">
 </head>
 
 <body>
@@ -25,7 +25,7 @@
         $password = "";
         $dbname = "bookshop";
 
-        session_start();
+        // session_start();
         if (!isset($_SESSION['koszyk'])) {
             echo '<p class="kosz">Koszyk jest pusty</p>';
         } else {
@@ -89,26 +89,29 @@
             }
         }
         ?>
-
         <script>
             $(document).ready(function() {
-                $('#zamow').click(function() {
-                    $.confirm({
-                        title: 'Zamówienie',
-                        content: '<br> Do złożenia zamowienia jest wymagane posiadanie konta. <br> Proszę zarejestruj się jeśli jeszcze nie masz konta w przeciwnym przypadku zaloguj się',
-                        buttons: {
-                            'zaloguj się': function() {
-                                location.href = 'logowanie.php';
-                            },
-                            'zarejestruj się': function() {
-                                location.href ='rejestracja.php';
-                            },
-                            anuluj: function() {
-
-                            },
-                        }
+                <?php
+                if (!isset($_SESSION['username'])) {
+                ?>
+                    $('#zamow').click(function() {
+                        $.confirm({
+                            title: 'Zamówienie',
+                            content: '<br> Do złożenia zamowienia jest wymagane posiadanie konta. <br> Proszę zarejestruj się jeśli jeszcze nie masz konta w przeciwnym przypadku zaloguj się',
+                            buttons: {
+                                'zaloguj się': function() {
+                                    location.href = './logowanie/logowanie.php';
+                                },
+                                'zarejestruj się': function() {
+                                    location.href = './rejestracja/rejestracja.php';
+                                },
+                                anuluj: function() {},
+                            }
+                        });
                     });
-                });
+                <?php
+                }
+                ?>
             });
         </script>
     </main>

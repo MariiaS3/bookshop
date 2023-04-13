@@ -8,8 +8,8 @@
     <title>Document</title>
         <script src="jquery-3.6.3.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="./main.css">
-    <link rel="stylesheet" href="./products.css">
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/products.css">
 </head>
 
 <body>

@@ -1,13 +1,11 @@
 .container {
-  max-width: 1920px;
-  height: 800px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .items {
-  width: 60%;
+  width: 80%;
 }
 
 table,
@@ -20,22 +18,17 @@ table {
   text-align: center;
   width: 100%;
   border-collapse: collapse;
-  margin: 50px 0px 50px 100px;
+  margin: 50px 0px 50px 0px;
 }
 
 .kosz{
-    margin-left: 350px;
     margin-top: 50px;
 }
 
 #zamow{
+  margin-top: 20px;
   width: 150px;
   height: 30px;
-}
-
-.suma{
-  position: absolute;
-  right: 350px;
 }
 
 .suma a{

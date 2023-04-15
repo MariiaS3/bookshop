@@ -24,13 +24,7 @@
                     $zapisz = true;
 
                     if (isset($_POST['email'])) {
-                        try {
-                            $adres = "localhost";
-                            $user = "root";
-                            $password = "";
-                            $dbname = "bookshop";
-
-                            $id = new mysqli($adres, $user, $password, $dbname);
+                            include_once("../polacz_db.php");
 
                             $email = $_POST['email'];
                             $password = $_POST['haslo'];
@@ -51,8 +45,6 @@
                             }else{
                                 header("Location:./logowanie.php", TRUE, 422);
                             }
-                        } catch (Exception $ex) {
-                        }
                     }
                     ?>
                 </div>

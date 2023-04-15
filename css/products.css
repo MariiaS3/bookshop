@@ -1,52 +1,46 @@
 .container {
     display: flex;
-    max-width: 1920px;
-    height: 950px;
-    display: flex;
     flex-direction: column;
     align-items: center;
 }
 
 .items {
     width: 70%;
-    padding: 50px;
-    margin: 0px 0px 0px 300px;
 }
 
 .item {
     display: flex;
-    justify-content: center;
+    align-items: center;
+    justify-content:space-between;
     list-style: none;
     margin: 50px 0px 50px 0px;
+    padding: 0px 50px 0px 50px;
     height: 200px;
-    width: 90%;
     background: #fffffff6;
     box-shadow: 0 0 0.5rem #00000080;
     border-radius: 15px;
 }
 
-.opis{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
-
-img{
+.img{
     width: 120px;
     height: 120px;
 }
 
-.tytul, .dane{
-    padding: 0px 0px 0px 20px;
+.opis{
+    display: flex;
+    flex-direction: row;
 }
 
-.tytul{
-    margin-top: -5px;
-    width: 700px;
+.tytul, .dane {
+    padding: 0px 0px 0px 50px;
 }
 
 .dane{
     font-size: small;
+}
+
+.tytul{
+    margin-top: -5px;
 }
 
 .cena{

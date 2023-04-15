@@ -15,36 +15,37 @@
 </head>
 
 <body>
+    <header>
+        <nav>
+            <?php
+            include_once("./pasek1.php")
+            ?>
+        </nav>
+    </header>
     <main>
         <?php
-        include_once("./pasek.php")
+        include_once("./pasek2.html")
         ?>
-        <?php
-        $address = "localhost";
-        $user = "root";
-        $password = "";
-        $dbname = "bookshop";
+        <div id="prawy">
+            <section class="container">
+                <?php
+                include_once("./polacz_db.php");
 
-        // session_start();
-        if (!isset($_SESSION['koszyk'])) {
-            echo '<p class="kosz">Koszyk jest pusty</p>';
-        } else {
-            try {
+                if (!isset($_SESSION['koszyk'])) {
+                    echo '<p class="kosz">Koszyk jest pusty</p>';
+                } else {
 
-                $koszyk = $_SESSION['koszyk'];
-                $isbn = [];
+                    $koszyk = $_SESSION['koszyk'];
+                    $isbn = [];
 
-                foreach ($_SESSION['koszyk'] as $x => $x_value) {
-                    array_push($isbn, $x);
-                }
+                    foreach ($_SESSION['koszyk'] as $x => $x_value) {
+                        array_push($isbn, $x);
+                    }
 
+                    $query = "SELECT * FROM books WHERE isbn IN ('" . implode("','", $isbn) . "')";
+                    $dane = $id->query($query);
 
-                $id = new mysqli($address, $user, $password, $dbname);
-                $query = "SELECT * FROM books WHERE isbn IN ('" . implode("','", $isbn) . "')";
-                $dane = $id->query($query);
-
-        ?>
-                <div class="container">
+                ?>
                     <div class="items">
                         <table>
                             <tr>
@@ -72,56 +73,53 @@
                         </table>
                         <div class="suma">
                             <?php
-                            echo "<p>Wartosc w koszyku wynosi: $sum</p>";
+                            echo "<p>Wartość książek w koszyku wynosi: $sum</p>";
                             echo '<input type="submit" id="zamow" value="Złóż zamówienie"><br><br>';
-                            echo "<a href=\"kasuj.php\">Usun towary z koszyka</a>";
+                            echo "<a href=\"kasuj.php\">Usuń towary z koszyka</a>";
                             ?>
                         </div>
                     </div>
-                </div>
-
-        <?php
-
-            } catch (Exception $th) {
-                $komunikat = $th->getMessage();
-                echo $komunikat;
-                echo "<p>Błąd przepraszamy</p>";
-            }
-        }
-        ?>
-        <script>
-            $(document).ready(function() {
                 <?php
-                if (!isset($_SESSION['username'])) {
-                ?>
-                    $('#zamow').click(function() {
-                        $.confirm({
-                            title: 'Zamówienie',
-                            content: '<br> Do złożenia zamowienia jest wymagane posiadanie konta. <br> Proszę zarejestruj się jeśli jeszcze nie masz konta w przeciwnym przypadku zaloguj się',
-                            buttons: {
-                                'zaloguj się': function() {
-                                    location.href = './logowanie/logowanie.php';
-                                },
-                                'zarejestruj się': function() {
-                                    location.href = './rejestracja/rejestracja.php';
-                                },
-                                anuluj: function() {},
-                            }
-                        });
-                    });
-                <?php
-                } else if(isset($_SESSION['koszyk'])){
-                    ?>
-                    $('#zamow').click(function() {
-                        location.href = './kasuj.php';
-                    });
-                <?php
-
                 }
                 ?>
-            });
-        </script>
+                <script>
+                    $(document).ready(function() {
+                        <?php
+                        if (!isset($_SESSION['username'])) {
+                        ?>
+                            $('#zamow').click(function() {
+                                $.confirm({
+                                    title: 'Zamówienie',
+                                    content: '<br> Do złożenia zamowienia jest wymagane posiadanie konta. <br> Proszę zarejestruj się jeśli jeszcze nie masz konta w przeciwnym przypadku zaloguj się',
+                                    buttons: {
+                                        'zaloguj się': function() {
+                                            location.href = './logowanie/logowanie.php';
+                                        },
+                                        'zarejestruj się': function() {
+                                            location.href = './rejestracja/rejestracja.php';
+                                        },
+                                        anuluj: function() {},
+                                    }
+                                });
+                            });
+                        <?php
+                        } else if (isset($_SESSION['koszyk'])) {
+                        ?>
+                            $('#zamow').click(function() {
+                                location.href = './kasuj.php';
+                            });
+                        <?php
+
+                        }
+                        ?>
+                    });
+                </script>
+            </section>
+        </div>
     </main>
+    <footer>
+
+    </footer>
 
 </body>
 

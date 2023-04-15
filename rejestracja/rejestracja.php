@@ -24,13 +24,8 @@
                     $zapisz = true;
 
                     if (isset($_POST['name'])) {
-                        try {
-                            $adres = "localhost";
-                            $user = "root";
-                            $password = "";
-                            $dbname = "bookshop";
 
-                            $id = new mysqli($adres, $user, $password, $dbname);
+                            include_once("../polacz_db.php");
 
                             $name = $_POST['name'];
                             $lastname = $_POST['lastname'];
@@ -49,8 +44,7 @@
                                 $email_exist = true;
                                 header("Location:rejestracja.html", TRUE, 422);
                             }
-                        } catch (Exception $ex) {
-                        }
+                    
                     }
                     ?>
                 </div>

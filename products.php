@@ -16,7 +16,8 @@
     <header>
         <nav>
             <?php
-            include_once("./pasek1.php")
+                include_once("./polacz_db.php");
+                include_once("./pasek1.php")
             ?>
         </nav>
     </header>
@@ -25,7 +26,6 @@
         include_once("./pasek2.html")
         ?>
         <?php
-        include_once("./polacz_db.php");
 
         $query = "SELECT isbn, autor, tytul, cena, stan FROM books";
         $dane = $id->query($query);

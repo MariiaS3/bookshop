@@ -74,7 +74,7 @@ $(document).ready(function () {
                 success: function (data) {
                     $('#response').html("Logowanie przebiegło pomyślnie");
                     setTimeout(function() { 
-                        location.href ='../main.php';
+                        location.href ='../index.php';
                     }, 800);
                 },
                 error: function (jqXHR) {

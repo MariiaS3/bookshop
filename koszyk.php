@@ -18,6 +18,7 @@
     <header>
         <nav>
             <?php
+            include_once("./polacz_db.php");
             include_once("./pasek1.php")
             ?>
         </nav>
@@ -29,7 +30,6 @@
         <div id="prawy">
             <section class="container">
                 <?php
-                include_once("./polacz_db.php");
 
                 if (!isset($_SESSION['koszyk'])) {
                     echo '<p class="kosz">Koszyk jest pusty</p>';
@@ -41,7 +41,7 @@
                     foreach ($_SESSION['koszyk'] as $x => $x_value) {
                         array_push($isbn, $x);
                     }
-
+                    include_once("./polacz_db.php");
                     $query = "SELECT * FROM books WHERE isbn IN ('" . implode("','", $isbn) . "')";
                     $dane = $id->query($query);
 
@@ -104,9 +104,10 @@
                             });
                         <?php
                         } else if (isset($_SESSION['koszyk'])) {
+
                         ?>
                             $('#zamow').click(function() {
-                                location.href = './kasuj.php';
+                               location.href = './kasuj.php';
                             });
                         <?php
 
